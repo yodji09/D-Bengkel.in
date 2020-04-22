@@ -1,0 +1,26 @@
+{
+  "name": "d-bengkel.in",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yodji09/D-Bengkel.in.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yodji09/D-Bengkel.in/issues"
+  },
+  "homepage": "https://github.com/yodji09/D-Bengkel.in#readme",
+  "dependencies": {
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "nodemailer": "^6.4.6",
+    "pg": "^8.0.2",
+    "sequelize": "^5.21.6"
+  }
+}
