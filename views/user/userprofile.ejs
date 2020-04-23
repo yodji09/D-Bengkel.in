@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="./partials/css/">
+        <%-include('../partials/style')  %> 
+    </head>
+    <body>
+        <%- include('../partials/navbar-user.ejs') %> 
+        <div style="padding-left:16px" class="content-container" style="display: flexbox;">
+            <div style="display: flexbox; flex: 1;">
+                <h4><%= message ? message : "" %> </h4>
+                <h2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Welcome <%= result.fullname() %>  </h2>
+                <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-decoration: aqua;">Your balance : <%= result.getRupiah()%> </p>
+            </div>
+            <div style="flex: 1;">
+            <ul>
+                <ul><a href="/user/<%=result.username %>/edit">Edit Profile</a></ul>
+                <ul><a href="#service">Service </a></ul>
+                <ul><a href="/user/<%=result.username %>/topup">TopUp</a></ul>
+            </ul>
+            </div>
+        </div>
+        <%- include('../partials/function.ejs') %> 
+    </body>
+</html>
