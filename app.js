@@ -1,19 +1,12 @@
-"use strict"
+const express = require('express')
+const app = express()
+const port = 3000
+const router = require('./routes/index.js')
 
-const express = require('express');
+app.set('view engine', 'ejs')
+app.use(express.urlencoded({extended : true}))
 
-const app = express();
+app.use(router)
 
-const port = 3000;
-
-app.set("view engine", "ejs");
-
-app.use(express.urlencoded({extended: false}));
-
-const routes = require("./routes");
-
-app.use("/", routes);
-
-app.listen(port, () => {
-    console.log('app listen to port', port);
-})
+app.listen(port, ()=>{
+    console.log('This App listen to', port)
