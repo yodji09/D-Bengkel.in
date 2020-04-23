@@ -2,15 +2,21 @@ const nodemailer = require('nodemailer')
 
 const transporter = nodemailer.createTransport({
     service : 'gmail',
-    auth : {
-        user : 'yodji09@gmail.com',
-        pass: 'Trafalgar99'
+    auth: {
+      user: "mobadc2017@gmail.com", // replace with your Mailtrap credentials
+      pass: "Trafalgar9"
     }
-})
+  });
 
 const mailOptions = {
-    from : 'yodji09@gmail.com',
+    from : 'mobadc2017@gmail.com',
     to : '',
-    subject : 'Succes Create Account',
-    text : ''
+    subject : '',
+    text : '',
+    html : "",
+    attachment : [
+        { filename : '', path : ''}
+    ]
 }
+
+module.exports = {transporter, mailOptions}
