@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.1">
+        <title>vehicles</title>
+    </head>
+    <body>
+        <h1>Vehicles</h1>
+        <table border="">
+            <tr>
+                <th>vehicle_brand</th>
+                <th>vehicle_type</th>
+                <th>UserId</th>
+                <th><form action="/vehicles/Add" method="GET"><input type="submit" value="Add"></form></th>
+            </tr>
+            <% for(let i = 0; i < vehicle.length; i++){ %>
+                <tr>
+                    <td><%= vehicle[i].vehicle_brand %></td>
+                    <td><%= vehicle[i].vehicle_type %></td>
+                    <td><%= vehicle[i].UserId %></td>
+                    <td><form action="/vehicles/<%= vehicle[i].id %>/edit" method="GET"><input type="submit" value="Edit"></form>
+                        <form action="/vehicles/<%= vehicle[i].id %>/delete" method="GET"><input type="submit" value="Delete"></form></td>
+                </tr>
+            <% } %>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.1">
+        <title>services</title>
+    </head>
+    <body>
+        <h1>Add Service</h1>
+        <form action="/services/add" method="POST">
+            <label for="service_name">Service Name</label><br>
+            <input type="text" placeholder="service name" name="service_name" required><br>
+            <label for="price">Price</label><br>
+            <input type="number" placeholder="0" name="price" required><br>
+            <input type="submit" value="Save">
+        </form>
+        <form action="/services" method="GET"><input type="submit" value="Cancel"></form>
+    </body>
+</html>
