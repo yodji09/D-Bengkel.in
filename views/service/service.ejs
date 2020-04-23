@@ -11,14 +11,14 @@
             <tr>
                 <th>service_name</th>
                 <th>price</th>
-                <th><form action="/services/Add" method="GET"><input type="submit" value="Add"></form></th>
+                <th>option</th>
             </tr>
             <% for(let i = 0; i < service.length; i++){ %>
                 <tr>
                     <td><%= service[i].service_name %></td>
                     <td><%= service[i].price %></td>
-                    <td><form action="/services/<%= service[i].id %>/edit" method="GET"><input type="submit" value="Edit"></form>
-                        <form action="/services/<%= service[i].id %>/delete" method="GET"><input type="submit" value="Delete"></form></td>
+                    <td><form><input type="radio" name="gender" value="true"> yes
+                        <input type="radio" name="gender" value="false"> no</form></td>
                 </tr>
             <% } %>
         </table>
