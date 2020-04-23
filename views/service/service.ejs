@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.1">
+        <title>services</title>
+    </head>
+    <body>
+        <h1>Services</h1>
+        <table border="">
+            <tr>
+                <th>service_name</th>
+                <th>price</th>
+                <th><form action="/services/Add" method="GET"><input type="submit" value="Add"></form></th>
+            </tr>
+            <% for(let i = 0; i < service.length; i++){ %>
+                <tr>
+                    <td><%= service[i].service_name %></td>
+                    <td><%= service[i].price %></td>
+                    <td><form action="/services/<%= service[i].id %>/edit" method="GET"><input type="submit" value="Edit"></form>
+                        <form action="/services/<%= service[i].id %>/delete" method="GET"><input type="submit" value="Delete"></form></td>
+                </tr>
+            <% } %>
+        </table>
+    </body>
+</html>

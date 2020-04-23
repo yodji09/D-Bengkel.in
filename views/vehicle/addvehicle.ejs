@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.1">
+        <title>vehicles</title>
+    </head>
+    <body>
+        <h1>Add Vehicle</h1>
+        <form action="/vehicles/add" method="POST">
+            <label for="vehicle_brand">vehicle brand</label><br>
+            <input type="text" placeholder="vehicle brand" name="vehicle_brand" required><br>
+            <label for="vehicle_type">vehicle type</label><br>
+            <input type="text" placeholder="vehicle type" name="vehicle_type" required><br>
+            <input type="submit" value="Save">
+        </form>
+        <form action="/vehicles" method="GET"><input type="submit" value="Cancel"></form>
+    </body>
+</html>
