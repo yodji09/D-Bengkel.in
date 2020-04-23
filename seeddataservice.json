@@ -1,0 +1,14 @@
+[
+    {
+        "service_name": "fullservice",
+        "price": 200000
+    },
+    {
+        "service_name": "gantioli",
+        "price": 70000
+    },
+    {
+        "service_name": "heavyservice",
+        "price": 600000
+    }
+]

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.1">
+        <title>service</title>
+    </head>
+    <body>
+        <h1>Edit Service</h1>
+        <form action="/services/<%= service.id %>/edit" method="POST">
+            <label for="service_name">service name</label><br>
+            <input type="text" name="service_name" value="<%= service.service_name %>" required><br>
+            <label for="price">price</label><br>
+            <input type="number" name="price" value="<%= service.price %>" required><br>
+            <input type="submit" value="Save">
+        </form>
+        <form action="/services" method="GET"><input type="submit" value="Cancel"></form>
+    </body>
+</html>
