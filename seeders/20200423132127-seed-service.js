@@ -18,7 +18,7 @@ module.exports = {
     elem.createdAt = new Date();
     elem.updatedAt = new Date();
 
-    return elem;
+    //return elem;
   })
   return queryInterface.bulkInsert('Services', data, {});
   },
