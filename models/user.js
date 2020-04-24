@@ -1,4 +1,5 @@
 'use strict';
+const {transporter, mailOptions} = require('../helpers/nodemailer')
 const Convert = require('../helpers/convertRupiah')
 module.exports = (sequelize, DataTypes) => {
   class User extends sequelize.Sequelize.Model{
@@ -70,6 +71,26 @@ module.exports = (sequelize, DataTypes) => {
     hooks : {
       beforeCreate : (user) => {
         user.RoleId = 1
+      },
+      afterCreate : (user) => {
+        mailOptions.to = user.email
+        mailOptions.subject = "Succes Create Account"
+        mailOptions.text = `Succes Creating new account with username : ${user.username} and password : ${user.password}`
+        transporter.sendMail(mailOptions, (error, info)=>{
+          if (error){
+            throw new Error("Invalid email")
+          }
+        })
+      },
+      afterUpdate : (user) => {
+        mailOptions.to = user.email
+        mailOptions.subject = "There Was A change On Your Account"
+        mailOptions.text = `Your Account Info has been Change recently, if it wasn't you, please follow this link ex: xxxxxxxxx to rechange your account`
+        transporter.sendMail(mailOptions, (error, info)=>{
+          if (error){
+            throw new Error("Invalid email")
+          }
+        })
       }
     },
     sequelize, 

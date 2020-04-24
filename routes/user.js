@@ -7,10 +7,10 @@ router.post('/register', ControllerUser.register)
 router.get('/login', ControllerUser.showLogin)
 router.post('/login', ControllerUser.Login)
 router.get('/:username', (req, res, next)=>{
-    if(req.app.locals.isLogin){
+    if(req.session.isLogin){
         next()
     } else {
-        req.app.locals.message = "Please login first"
+        req.session.message = "Please login first"
         res.redirect('/user/login')
     }
 },ControllerUser.showUser)

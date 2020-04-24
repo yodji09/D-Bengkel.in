@@ -1,10 +1,11 @@
 const {User, Role} = require('../models')
-const upload = require('../helpers/upload')
+const {upload, storage} = require('../helpers/upload')
+const {transporter, mailOptions} = require('../helpers/nodemailer')
 
 class ControllerUser {
     static showRegister(req, res){
-        const {message} = req.app.locals
-        delete req.app.locals.message
+        const {message} = req.session
+        delete req.session.message
         res.render("./user/register", {message})
     }
     static register(req, res){
@@ -18,23 +19,23 @@ class ControllerUser {
             password : req.body.password,
         }
         if(req.body.password !== req.body.confirmpassword){
-            req.app.locals.message = "password did not match"
+            req.session.message = "password did not match"
             return res.redirect("/user/register")
         }
         User
             .create(values)
             .then(result => {
-                req.app.locals.message = 'Succes Create Account'
+                req.session.message = 'Succes Create Account'
                 res.redirect('/user/login')
             })
             .catch(err => {
-                req.app.locals.message = "Email/Username already used"
+                req.session.message = "Email/Username already used"
                 res.redirect("/user/register")
             })
     }
     static showLogin(req, res){
-        const {message} = req.app.locals
-        delete req.app.locals.message
+        const {message} = req.session
+        delete req.session.message
         res.render('./user/login', {message})
     }
     static Login(req, res){
@@ -50,10 +51,10 @@ class ControllerUser {
             .then(result => {
                 console.log(result)
                 if(result === undefined){
-                    req.app.locals.message = "wrong email/password"
+                    req.session.message = "wrong email/password"
                     res.redirect("/user/login")
                 } else {
-                    req.app.locals.isLogin = true
+                    req.session.isLogin = true
                     if (result.Role.role_name === "User"){
                         res.redirect(`/user/${result.username}`)
                     } else {
@@ -62,7 +63,7 @@ class ControllerUser {
                 }
             })
             .catch(err => {
-                req.app.locals.message = "Email / Password didnot match"
+                req.session.message = "Email / Password didnot match"
                 res.redirect('/user/login')
             })
     }
@@ -72,10 +73,10 @@ class ControllerUser {
                 username : req.params.username
             }
         }
-        const {message} = req.app.locals
-        delete req.app.locals.message
-        if(!req.app.locals.isLogin){
-            req.app.locals.message = "Please Login First"
+        const {message} = req.session
+        delete req.session.message
+        if(!req.session.isLogin){
+            req.session.message = "Please Login First"
             res.redirect('/user/login')
         }
         User
@@ -88,8 +89,8 @@ class ControllerUser {
             })
     }
     static topUpForm(req, res){
-        const {message} = req.app.locals
-        delete req.app.locals.message
+        const {message} = req.session
+        delete req.session.message
         User
             .findOne({
                 where : {
@@ -114,15 +115,25 @@ class ControllerUser {
             .then(result => {
                 upload(req, res, (err)=>{
                     if(err){
-                        req.app.locals.message = err
+                        req.session.message = err
                     } else {
-                        req.app.locals.message = "Your Top Up will be Processed Soon"
+                        req.session.message = "Your Top Up will be Processed Soon"
+                        mailOptions.to = "yodji09@gmail.com"
+                        mailOptions.subject = "Please Approve this topup request"
+                        mailOptions.text = `this user with username ${result.username} made a topup with value ${req.body.money}`
+                        mailOptions.attachment[0].filename = req.file.filename
+                        mailOptions.attachment[0].path = './public/uploads/' + mailOptions.attachment[0].filename
+                        transporter.sendMail(mailOptions, (error, info)=>{
+                            if (error){
+                                throw new Error("Invalid email")
+                            }
+                        })
                         res.redirect(`/user/${result.username}`)
                     }
                 }) 
             })
             .catch(err => {
-                req.app.locals.message = err
+                req.session.message = err
                 res.redirect(`/user/${data.username}/topup`)
             })
     }
@@ -132,8 +143,8 @@ class ControllerUser {
                 username : req.params.username
             }
         }
-        const {message} = req.app.locals
-        delete req.app.locals.message
+        const {message} = req.session
+        delete req.session.message
         User
             .findOne(options)
             .then(result => {
@@ -154,7 +165,7 @@ class ControllerUser {
             password : req.body.password,
         }
         if(req.body.password !== req.body.confirmpassword){
-            req.app.locals.message = "password did not match"
+            req.session.message = "password did not match"
             return res.redirect(`/user/${req.body.username}/edit`)
         }
         User
@@ -164,16 +175,16 @@ class ControllerUser {
                 }
             })
             .then(result => {
-                req.app.locals.message = 'Succes Update Profile'
+                req.session.message = 'Succes Update Profile'
                 res.redirect(`/user/${result.username}/edit`)
             })
             .catch(err => {
-                req.app.locals.message = "Email already used"
+                req.session.message = "Email already used"
                 res.redirect("/user/register")
             })
     }
     static logOutUser(req, res){
-        req.app.locals.isLogin = false
+        req.session.isLogin = false
         res.redirect('/user/login')
     }
 }
