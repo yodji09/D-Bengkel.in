@@ -13,7 +13,6 @@ class ControllerService{
                 res.render('./service/service.ejs', {service});
             })
             .catch(error => {
-                console.log(error)
                 res.send(error.message);
             })
     }
