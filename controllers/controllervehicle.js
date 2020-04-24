@@ -10,7 +10,9 @@ class ControllerVehicle{
         Vehicle
             .findAll()
             .then(vehicle => {
-                res.render('./vehicle/vehicle.ejs', {vehicle});
+                const username = req.params.username
+                console.log(username)
+                res.render('./vehicle/vehicle.ejs', {vehicle, username});
             })
             .catch(error => {
                 console.log(error)
