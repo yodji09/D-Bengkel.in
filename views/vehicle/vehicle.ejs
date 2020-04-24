@@ -13,20 +13,21 @@
         <div style="padding-left:16px" class="content-container" style="display: flexbox;">
             <div style="flex: 1;">
             <h1>Vehicles</h1>
+            <form action="/user/<%= username %>/vehicles/Add" method="GET"><input type="submit" value="Add"></form>
             <table border="">
                 <tr>
                     <th>vehicle_brand</th>
                     <th>vehicle_type</th>
                     <th>UserId</th>
-                    <th><form action="/vehicles/Add" method="GET"><input type="submit" value="Add"></form></th>
+                    <th>action</th>
                 </tr>
                 <% for(let i = 0; i < vehicle.length; i++){ %>
                     <tr>
                         <td><%= vehicle[i].vehicle_brand %></td>
                         <td><%= vehicle[i].vehicle_type %></td>
                         <td><%= vehicle[i].UserId %></td>
-                        <td><form action="/vehicles/<%= vehicle[i].id %>/edit" method="GET"><input type="submit" value="Edit"></form>
-                            <form action="/vehicles/<%= vehicle[i].id %>/delete" method="GET"><input type="submit" value="Delete"></form></td>
+                        <td><form action="/user/<%= username %>/vehicles/<%= vehicle[i].id %>/edit" method="GET"><input type="submit" value="Edit"></form>
+                            <form action="/user/<%= username %>/vehicles/<%= vehicle[i].id %>/delete" method="GET"><input type="submit" value="Delete"></form></td>
                     </tr>
                 <% } %>
             </table>

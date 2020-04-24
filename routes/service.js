@@ -7,6 +7,11 @@ const router = express.Router();
 
 router.get('/', ControllerService.showDataService);
 
+router.post('/', (req, res) => {
+    console.log(req.body)
+    res.send('test')
+})
+
 router.get('/add', ControllerService.addServiceForm);
 
 router.post('/add', ControllerService.addService);
