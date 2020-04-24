@@ -8,8 +8,7 @@ const router = express.Router();
 router.get('/', ControllerService.showDataService);
 
 router.post('/', (req, res) => {
-    console.log(req.body)
-    res.send('test')
+    res.send('Succes Request A service, Admin will approve it soon')
 })
 
 router.get('/add', ControllerService.addServiceForm);
