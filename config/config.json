@@ -5,12 +5,5 @@
     "database": "bengkelin-db",
     "host": "127.0.0.1",
     "dialect": "postgres"
-  },
-  "production": {
-    "username": "oawulhxpxsrjcy",
-    "password": "99d723fbc353b0785fc043094cd8d429c156e987c72162a307b351a1ab1b783d",
-    "database": "d304buj06n3f26",
-    "host": "ec2-34-193-232-231.compute-1.amazonaws.com",
-    "dialect": "postgres"
   }
 }
