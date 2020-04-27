@@ -1,28 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=0.1">
-        <title>vehicles</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="./partials/css/">
+        <%-include('../partials/style')  %> 
     </head>
     <body>
-        <h1>Vehicles</h1>
-        <table border="">
-            <tr>
-                <th>vehicle_brand</th>
-                <th>vehicle_type</th>
-                <th>UserId</th>
-                <th><form action="/vehicles/Add" method="GET"><input type="submit" value="Add"></form></th>
-            </tr>
-            <% for(let i = 0; i < vehicle.length; i++){ %>
+
+        <%-include('../partials/navbar.ejs')%> 
+
+        <div style="padding-left:16px" class="content-container" style="display: flexbox;">
+            <div style="flex: 1;">
+            <h1>Vehicles</h1>
+            <form action="/user/<%= username %>/vehicles/Add" method="GET"><input type="submit" value="Add"></form>
+            <table border="">
                 <tr>
-                    <td><%= vehicle[i].vehicle_brand %></td>
-                    <td><%= vehicle[i].vehicle_type %></td>
-                    <td><%= vehicle[i].UserId %></td>
-                    <td><form action="/vehicles/<%= vehicle[i].id %>/edit" method="GET"><input type="submit" value="Edit"></form>
-                        <form action="/vehicles/<%= vehicle[i].id %>/delete" method="GET"><input type="submit" value="Delete"></form></td>
+                    <th>vehicle_brand</th>
+                    <th>vehicle_type</th>
+                    <th>UserId</th>
+                    <th>action</th>
                 </tr>
-            <% } %>
-        </table>
+                <% for(let i = 0; i < vehicle.length; i++){ %>
+                    <tr>
+                        <td><%= vehicle[i].vehicle_brand %></td>
+                        <td><%= vehicle[i].vehicle_type %></td>
+                        <td><%= vehicle[i].UserId %></td>
+                        <td><form action="/user/<%= username %>/vehicles/<%= vehicle[i].id %>/edit" method="GET"><input type="submit" value="Edit"></form>
+                            <form action="/user/<%= username %>/vehicles/<%= vehicle[i].id %>/delete" method="GET"><input type="submit" value="Delete"></form></td>
+                    </tr>
+                <% } %>
+            </table>
+            </div>
+        </div>
+
+        <%- include('../partials/function.ejs') %> 
+
     </body>
 </html>

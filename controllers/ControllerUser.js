@@ -49,7 +49,6 @@ class ControllerUser {
         User
             .findOne(options)
             .then(result => {
-                console.log(result)
                 if(result === undefined){
                     req.session.message = "wrong email/password"
                     res.redirect("/user/login")

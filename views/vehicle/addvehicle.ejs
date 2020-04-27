@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Add Vehicle</h1>
-        <form action="/vehicles/add" method="POST">
+        <form action="/user/<%= username %>/vehicles/add" method="POST">
             <label for="vehicle_brand">vehicle brand</label><br>
             <input type="text" placeholder="vehicle brand" name="vehicle_brand" required><br>
             <label for="vehicle_type">vehicle type</label><br>

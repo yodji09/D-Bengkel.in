@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const ControllerUser = require('../controllers/ControllerUser')
+const ControllerService = require("../controllers/controllerservice.js");
+const ControllerVehicle = require("../controllers/controllervehicle.js");
 
+const serviceRouter = require('./service.js');
 router.get('/register', ControllerUser.showRegister)
 router.post('/register', ControllerUser.register)
 router.get('/login', ControllerUser.showLogin)
@@ -19,5 +22,13 @@ router.post('/:username/topup', ControllerUser.userUpload)
 router.get('/:username/edit', ControllerUser.showEditForm)
 router.post('/:username/edit', ControllerUser.editUser)
 router.get('/:username/logout', ControllerUser.logOutUser)
+router.get('/:username/vehicles', ControllerVehicle.showDataVehicle)
+router.get('/:username/vehicles/add', ControllerVehicle.addVehicleForm)
+router.post('/:username/vehicles/add', ControllerVehicle.addVehicle)
+router.get('/:username/vehicles/:id/delete', ControllerVehicle.deleteVehicle)
+router.get("/:username/vehicles/:id/edit", ControllerVehicle.updateVehicleForm)
+router.post("/:username/vehicles/:id/edit", ControllerVehicle.updateVehicle)
+router.use('/:username/services', serviceRouter)
+
 
 module.exports = router

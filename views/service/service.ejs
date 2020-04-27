@@ -1,26 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=0.1">
-        <title>services</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <%-include('../partials/style')  %> 
     </head>
     <body>
-        <h1>Services</h1>
-        <table border="">
-            <tr>
-                <th>service_name</th>
-                <th>price</th>
-                <th><form action="/services/Add" method="GET"><input type="submit" value="Add"></form></th>
-            </tr>
-            <% for(let i = 0; i < service.length; i++){ %>
+
+        <%-include('../partials/navbar.ejs')%> 
+
+        <div style="padding-left:16px" class="content-container" style="display: flexbox;">
+            <div style="display: flexbox; flex: 1;">
+                <h2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Welcome</h2>
+                <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-decoration: aqua;">Login Account</p>
+            </div>
+           <div>
+            <h1>Services</h1>
+            <form method="POST">
+            <table border="">
                 <tr>
-                    <td><%= service[i].service_name %></td>
-                    <td><%= service[i].price %></td>
-                    <td><form action="/services/<%= service[i].id %>/edit" method="GET"><input type="submit" value="Edit"></form>
-                        <form action="/services/<%= service[i].id %>/delete" method="GET"><input type="submit" value="Delete"></form></td>
+                    <th>service_name</th>
+                    <th>price</th>
+                    <th>option</th>
                 </tr>
-            <% } %>
-        </table>
+                <% for(let i = 0; i < service.length; i++){ %>
+                    <tr>
+                        <td><%= service[i].service_name %></td>
+                        <td><%= service[i].price %></td>
+                        
+                        <td><form method="POST"><p>
+                            <label>
+                              <input name="<%= service[i].service_name %>" type="radio" value="true" checked />
+                              <span>Yes</span>
+                            </label>
+                          </p>
+                          <p>
+                            <label>
+                              <input name="<%= service[i].service_name %>" type="radio" value="false" />
+                              <span>No</span>
+                            </label>
+                          </p>
+                      </form></td>
+                    </tr>
+                <% } %>
+            </table>
+            <button type="submit">submit</button>
+            </form>
+           </div>
+        </div>
+        <script
+        src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+        crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <%- include('../partials/function.ejs') %>  
     </body>
 </html>

@@ -7,6 +7,10 @@ const router = express.Router();
 
 router.get('/', ControllerService.showDataService);
 
+router.post('/', (req, res) => {
+    res.send('Succes Request A service, Admin will approve it soon')
+})
+
 router.get('/add', ControllerService.addServiceForm);
 
 router.post('/add', ControllerService.addService);
