@@ -13,7 +13,6 @@ class ControllerVehicle{
                 res.render('./vehicle/vehicle.ejs', {vehicle});
             })
             .catch(error => {
-                console.log(error)
                 res.send(error.message);
             })
     }
